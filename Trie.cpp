@@ -9,7 +9,7 @@ Trie::Trie(const char * chars, size_t nchars)
 
 Trie::~Trie()
 {
-
+	// TODO DELETE ALL THE NODES
 }
 
 void Trie::buildSubTrie(
@@ -24,8 +24,6 @@ void Trie::buildSubTrie(
 			continue;
 		TrieNode* child = new TrieNode(chars[i]);
 		root->addChild(child);
-		//std::cout << "Adding child:" << std::endl;
-		//child->printNode();
 		_size++;
 		skipinds.insert(i);
 		buildSubTrie(child,chars,nchars,skipinds);
@@ -41,15 +39,12 @@ bool Trie::find(std::string str)
 
 bool Trie::find(TrieNode* root, std::string str)
 {
-	//std::cout << "\nSearching for: " << str << std::endl;
 	if (!str.size())
 		return true;
 	std::map<char,TrieNode*>::iterator itr
 		= root->children.find(str[0]);
 	if (itr != root->children.end())
 	{
-		//std::cout << "Found first char at node:" << std::endl;
-		//itr->second->printNode();
 		str.erase(str.begin());
 		return this->find(itr->second,str);
 	}
