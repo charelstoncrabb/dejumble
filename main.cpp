@@ -3,7 +3,7 @@
 #include <string.h>
 #include <iostream>
 
-#include "src/TriedContainer.hpp"
+#include "extern/triedcontainer/TriedContainer.hpp"
 #include "extern/argparse/argparse.hpp"
 
 using namespace std;
@@ -35,7 +35,15 @@ int main(int argc, const char** argv)
 	string charsUsing = jumbled_prob.first;
 	size_t minlen = jumbled_prob.second;
 
+	char my_str[] = "foobar";
+	size_t str_len = 6;
+
 	TriedContainer<> trie;
+
+	cout << (trie.insert(my_str,str_len,3) ? "true" : "false" ) << endl;
+	trie.erase(my_str,str_len);
+	cout << "trie.size() = " << trie.size() << endl;
+
 
 	if (trie.insert(charsUsing.data(),charsUsing.size(),1))
 		cout << "Insert of " << charsUsing << " successful!" << endl;
